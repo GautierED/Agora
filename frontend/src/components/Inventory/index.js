@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const Inventory = () => {
 
+    const [message, setMessage] = useState('hello')
+
     useEffect(() => {
-        let listItems = [];
-        let message = 'hello';
+
         const init = async () => {
 
         };    
@@ -14,7 +15,7 @@ const Inventory = () => {
 
     return (
         <div>
-            hello
+            {message}
         </div>
     );
 };
