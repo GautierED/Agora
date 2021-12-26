@@ -5,6 +5,7 @@ const Inventory = () => {
     useEffect(() => {
         let listItems = [];
         let message = 'hello';
+
         const init = async () => {
 
         };    
@@ -14,7 +15,7 @@ const Inventory = () => {
 
     return (
         <div>
-            hello
+            {message}
         </div>
     );
 };
