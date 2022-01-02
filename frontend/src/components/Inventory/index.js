@@ -19,10 +19,9 @@ const client = ipfsClient({
 
 const Inventory = () => {
 
-    const [message, setMessage] = useState(undefined);
     const [userAddress, setUserAddress] = useState(undefined);
     const [chainId, setChainId] = useState(undefined);
-    const [totalSupply, setTotalSupply] = useState(undefined);
+    const [img, setImg] = useState(undefined);
 
     useEffect(() => {
         let itemsList = [];
@@ -68,6 +67,7 @@ const Inventory = () => {
     window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
 
     async function loadInventory(contract, itemsList){
+        let baseURL = "https://ipfs.infura.io:5001/api/v0/cat?arg=";
         let supply = await contract.totalSupply();
         supply = parseInt(supply._hex, 16);
 
@@ -83,11 +83,11 @@ const Inventory = () => {
 
             });
 
-            let base = "https://ipfs.infura.io:5001/api/v0/cat?arg=";
-            let final = base + tokenURI.substring(7);
-            let output = await fetch(final);
-            let data = await output.text();
-            console.log(data);
+            let data = await fetch(baseURL + tokenURI.substring(7));
+            let output = await data.text();
+            let json = JSON.parse(output);
+
+            setImg(baseURL + json.image.substring(7));
 
         }
 
@@ -97,7 +97,7 @@ const Inventory = () => {
         <div>
             {userAddress}<br></br>
             {chainId}<br></br>
-            {totalSupply}
+            <img src={img}/>
         </div>
     );
 };
