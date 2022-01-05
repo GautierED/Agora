@@ -21,7 +21,7 @@ const Inventory = () => {
 
     const [userAddress, setUserAddress] = useState(undefined);
     const [chainId, setChainId] = useState(undefined);
-    const [img, setImg] = useState(undefined);
+    const [imgs, setImgs] = useState([]);
 
     useEffect(() => {
         let itemsList = [];
@@ -87,17 +87,22 @@ const Inventory = () => {
             let output = await data.text();
             let json = JSON.parse(output);
 
-            setImg(baseURL + json.image.substring(7));
-
+            setImgs(imgs => [...imgs, baseURL + json.image.substring(7)]);
         }
 
     };
+
+    const images = []
+
+    for(const[index, value] of imgs.entries()){
+        images.push(<img src={value}/>)
+    }
 
     return (
         <div>
             {userAddress}<br></br>
             {chainId}<br></br>
-            <img src={img}/>
+            {images}
         </div>
     );
 };
