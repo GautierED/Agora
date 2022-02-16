@@ -9,13 +9,6 @@ const contractAddress = '0x2aBf143BF98197f1cE3893F882f3b3222d0cFcc9';
 const bscChainId = '97';
 
 const ipfsClient = require("ipfs-http-client");
-/*
-const client = ipfsClient({
-  host: "ipfs.infura.io",
-  port: 5001,
-  protocol: "https",
-});
-*/
 
 const Inventory = () => {
 
@@ -24,6 +17,7 @@ const Inventory = () => {
     const [imgs, setImgs] = useState([]);
 
     useEffect(() => {
+        setImgs([]);
         let itemsList = [];
         const init = async () => {
 
@@ -51,7 +45,8 @@ const Inventory = () => {
                             signer
                         );
 
-                        loadInventory(contract, itemsList);
+                        loadFromContract(contract, itemsList)
+                        //loadOwnedFromContract(contract, accounts[0], itemsList);
 
                     } else alert('Please switch to the binance smart chain');
 
@@ -66,7 +61,8 @@ const Inventory = () => {
     window.ethereum.on('accountsChanged', (_account) => window.location.reload());
     window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
 
-    async function loadInventory(contract, itemsList){
+    //load every nfts from a contract
+    async function loadFromContract(contract, itemsList){
         let baseURL = "https://ipfs.infura.io:5001/api/v0/cat?arg=";
         let supply = await contract.totalSupply();
         supply = parseInt(supply._hex, 16);
@@ -92,8 +88,41 @@ const Inventory = () => {
 
     };
 
+    //load every nfts from contract owned by a wallet
+    async function loadOwnedFromContract(contract, wallet, itemsList){
+        let baseURL = "https://ipfs.infura.io:5001/api/v0/cat?arg=";
+        let supply = await contract.totalSupply();
+        supply = parseInt(supply._hex, 16);
+
+        for(var tokenId = 0; tokenId < supply; tokenId++){
+            let ownerAddress = await contract.ownerOf(tokenId);
+            let tokenURI = await contract.tokenURI(tokenId);
+
+            if(ownerAddress.toLowerCase() === wallet.toLowerCase()){
+
+                itemsList.push({
+
+                    id:tokenId,
+                    owner: ownerAddress,
+                    uri:tokenURI,
+    
+                });
+    
+                let data = await fetch(baseURL + tokenURI.substring(7));
+                let output = await data.text();
+                let json = JSON.parse(output);
+    
+                setImgs(imgs => [...imgs, baseURL + json.image.substring(7)]);
+
+            }
+
+        }
+
+    };
+
     const images = []
 
+    //push every nfts images 
     for(const[index, value] of imgs.entries()){
         images.push(<img src={value}/>)
     }
