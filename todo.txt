@@ -1,0 +1,11 @@
+- afficher une collection -> fait 
+
+- permettre a un user de lister son nft : 
+	user indique l'adresse du contrat, le numero du nft
+	si il existe, demander au user d'approuver via le contrat nft
+	ensuite appeler la fonction listItem du contrat marketplace
+		-> le nft est présent sur la marketplace
+
+- lister les nft mis en vente sur la marketplace
+- lister les nft mis en vente par chaque user 
+- ajouter une collection (adresse du contrat)

@@ -3,9 +3,13 @@ import {ethers, Contract } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 
 
-import contractABI from '../../abi.json';
+import abiNFT from '../../abiNFT.json';
+import abiAgora from '../../abiAgora.json';
 
-const contractAddress = '0x2aBf143BF98197f1cE3893F882f3b3222d0cFcc9';
+const nftAddress = '0x2aBf143BF98197f1cE3893F882f3b3222d0cFcc9';
+const agoraAddress = '0xBDb7828472FA1Cb332a1128636a53b2996B11BCC';
+
+
 const bscChainId = '97';
 
 const ipfsClient = require("ipfs-http-client");
@@ -40,13 +44,13 @@ const Inventory = () => {
                         const signer = provider.getSigner();
 
                         const contract = new Contract(
-                            contractAddress,
-                            contractABI,
+                            nftAddress,
+                            abiNFT,
                             signer
                         );
 
-                        loadFromContract(contract, itemsList)
-                        //loadOwnedFromContract(contract, accounts[0], itemsList);
+                        //loadFromContract(contract, itemsList)
+                        loadOwnedFromContract(contract, agoraAddress, itemsList);
 
                     } else alert('Please switch to the binance smart chain');
 
