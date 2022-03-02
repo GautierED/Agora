@@ -9,24 +9,26 @@ const bscChainId = '97';
 
 const Inventory = () => {
 
+    const [isRightChain, setisRightChain] = useState(undefined);
     const [images, setImages] =  useState([]);
 
     useEffect(() => {
+        console.log('here');
         let itemsList = [];
         const init = async () => {
 
             let provider = await detectEthereumProvider();
             if(provider){
-
                 const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
 
                 if(accounts[0]){
-
+                    
                     let chain = await provider.request({ method: 'eth_chainId' });
                     chain = String(parseInt(chain, 16));
-                    
+
                     if(chain === bscChainId){
 
+                        setisRightChain(1);
                         provider = new ethers.providers.Web3Provider(provider);
                         const signer = provider.getSigner();
 
@@ -38,22 +40,26 @@ const Inventory = () => {
 
                         setImages(await LoadOwnedFromContract(contract, accounts[0], itemsList));
 
-                    } else alert('Please switch to the binance smart chain');
+                    } else alert('Please switch to the binance smart chain'); 
 
-                } else alert('Pease login with Metamask');
+                } else alert('Pease login with Metamask'); 
 
-            } else alert('Please install Metamask');
+            } else alert('Please install Metamask'); 
             
         };    
         init();
     }, []);    
 
-    //window.ethereum.on('accountsChanged', (_account) => window.location.reload());
-    //window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
+    window.ethereum.on('accountsChanged', (_account) => window.location.reload());
+    window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
 
     return (
         <div>
-            My NFTs : <br></br>{images}
+            {isRightChain ? (
+                <div>My NFTs : <br></br>{images}</div>
+            ) : (
+                <div>Switch to the Binance Smart Chain</div>
+            )}
         </div>
     );
 };

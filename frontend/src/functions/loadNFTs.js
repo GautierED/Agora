@@ -35,7 +35,7 @@ export default async function LoadOwnedFromContract(contract, wallet, itemsList)
 
     //push every nfts images 
     for(const[index, value] of imgs.entries()){
-        images.push(<img src={value} key = {index}/>)
+        images.push(<img src={value} key = {index} alt = {'NFT'}/>)
     }
 
     return images

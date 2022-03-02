@@ -10,6 +10,7 @@ const bscChainId = '97';
 
 const NFTforSale = () => {
 
+    const [isRightChain, setisRightChain] = useState(undefined);
     const [images, setImages] =  useState([]);
 
     useEffect(() => {
@@ -28,6 +29,7 @@ const NFTforSale = () => {
 
                     if(chain === bscChainId){
 
+                        setisRightChain(1);
                         provider = new ethers.providers.Web3Provider(provider);
                         const signer = provider.getSigner();
 
@@ -49,12 +51,16 @@ const NFTforSale = () => {
         init();
     }, []);    
 
-    //window.ethereum.on('accountsChanged', (_account) => window.location.reload());
-    //window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
+    window.ethereum.on('accountsChanged', (_account) => window.location.reload());
+    window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
 
     return (
         <div>
-            For sales : <br></br>{images}
+            {isRightChain ? (
+                <div>For Sales : <br></br>{images}</div>
+            ) : (
+                <div>Switch to the Binance Smart Chain</div>
+            )}
         </div>
     );
 };
