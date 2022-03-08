@@ -4,7 +4,9 @@ import React from 'react';
 export default async function LoadOwnedFromContract(contract, wallet, itemsList){
     const imgs = [];
 
-    let baseURL = "https://ipfs.infura.io:5001/api/v0/cat?arg=";
+    //cant use infura api anymore for some reason
+    //let baseURL = "https://ipfs.infura.io:5001/api/v0/cat?arg=";
+    let baseURL = "https://ipfs.moralis.io:2053/ipfs/"
     let supply = await contract.totalSupply();
     supply = parseInt(supply._hex, 16);
 

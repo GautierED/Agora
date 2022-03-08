@@ -8,7 +8,7 @@ const nftAddress = '0x2aBf143BF98197f1cE3893F882f3b3222d0cFcc9';
 const agoraAddress = '0xBDb7828472FA1Cb332a1128636a53b2996B11BCC';
 const bscChainId = '97';
 
-const NFTforSale = () => {
+const Marketplace = () => {
 
     const [isRightChain, setisRightChain] = useState(undefined);
     const [images, setImages] =  useState([]);
@@ -65,4 +65,4 @@ const NFTforSale = () => {
     );
 };
 
-export default NFTforSale;
+export default Marketplace;
