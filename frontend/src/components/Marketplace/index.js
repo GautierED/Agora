@@ -3,6 +3,7 @@ import {ethers, Contract } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 import LoadOwnedFromContract from '../../functions/loadNFTs.js';
 import abiNFT from '../../abiNFT.json';
+import Item from '../../classes/item.js'
 
 const nftAddress = '0x2aBf143BF98197f1cE3893F882f3b3222d0cFcc9';
 const agoraAddress = '0xBDb7828472FA1Cb332a1128636a53b2996B11BCC';
@@ -11,12 +12,12 @@ const bscChainId = '97';
 const Marketplace = () => {
 
     const [isRightChain, setisRightChain] = useState(undefined);
-    const [images, setImages] =  useState([]);
+    const [items, setItems] =  useState([Item]);
 
     useEffect(() => {
-        let itemsList = [];
         const init = async () => {
 
+            setItems([]);
             let provider = await detectEthereumProvider();
             if(provider){
 
@@ -39,7 +40,8 @@ const Marketplace = () => {
                             signer
                         );
 
-                        setImages(await LoadOwnedFromContract(contract, agoraAddress, itemsList));
+                        setItems(await LoadOwnedFromContract(contract, agoraAddress));
+                        console.log(items);
 
                     } else alert('Please switch to the binance smart chain');
 
@@ -57,7 +59,14 @@ const Marketplace = () => {
     return (
         <div>
             {isRightChain ? (
-                <div>For Sales : <br></br>{images}</div>
+                <div>
+                    {items.map((item, index) => (
+                        <p key={index}>
+                            <img src = {item.imageAddress}/>
+                            {item.contractAddress}
+                        </p>
+                    ))}
+                </div>
             ) : (
                 <div>Switch to the Binance Smart Chain</div>
             )}

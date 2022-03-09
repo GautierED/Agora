@@ -1,8 +1,9 @@
 import React from 'react';
+import Item from '../classes/item.js'
 
 //load every nfts from contract owned by a wallet
-export default async function LoadOwnedFromContract(contract, wallet, itemsList){
-    const imgs = [];
+export default async function LoadOwnedFromContract(contract, wallet){
+    const items = [Item];
 
     //cant use infura api anymore for some reason
     //let baseURL = "https://ipfs.infura.io:5001/api/v0/cat?arg=";
@@ -16,29 +17,14 @@ export default async function LoadOwnedFromContract(contract, wallet, itemsList)
 
         if(ownerAddress.toLowerCase() === wallet.toLowerCase()){
 
-            itemsList.push({
-
-                id:tokenId,
-                owner: ownerAddress,
-                uri:tokenURI,
-
-            });
-
             let data = await fetch(baseURL + tokenURI.substring(7));
             let output = await data.text();
             let json = JSON.parse(output);
 
-            imgs.push(baseURL + json.image.substring(7))
+            items.push(new Item(baseURL + json.image.substring(7), contract.address))
         }
 
     }
 
-    const images = []
-
-    //push every nfts images 
-    for(const[index, value] of imgs.entries()){
-        images.push(<img src={value} key = {index} alt = {'NFT'}/>)
-    }
-
-    return images
+    return items
 };
