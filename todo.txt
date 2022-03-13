@@ -6,6 +6,5 @@
 	ensuite appeler la fonction listItem du contrat marketplace
 		-> le nft est présent sur la marketplace
 
-- lister les nft mis en vente sur la marketplace
-- lister les nft mis en vente par chaque user 
 - ajouter une collection (adresse du contrat)
+- ajouter bouton acheter/vendre en dessous des nft 

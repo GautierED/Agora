@@ -1,6 +1,7 @@
 export default class Item {
-    constructor(imageAddress, contractAddress) {
+    constructor(imageAddress, tokenId, contractAddress) {
         this.imageAddress = imageAddress;
+        this.tokenId = tokenId;
         this.contractAddress = contractAddress;
     }
 }

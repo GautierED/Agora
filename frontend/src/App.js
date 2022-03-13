@@ -3,6 +3,8 @@ import { Link, Routes, BrowserRouter as Router, Route } from "react-router-dom";
 import {Navbar, Nav, NavItem, Container} from 'react-bootstrap';
 import Inventory from "./components/Inventory/index";
 import Marketplace from "./components/Marketplace/index";
+import BuyItem from "./components/BuyItem/index";
+import SellItem from "./components/SellItem/index";
 import './bootstrap.css';
 
 import './App.css';
@@ -26,6 +28,8 @@ const App = () => {
       <Routes>
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="/buyItem/:idToken/:contractAddress" element={<BuyItem />} />
+        <Route path="/sellItem/:idToken/:contractAddress" element={<SellItem />} />
       </Routes>
     </Router>
   );

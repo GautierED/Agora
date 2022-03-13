@@ -21,7 +21,7 @@ export default async function LoadOwnedFromContract(contract, wallet){
             let output = await data.text();
             let json = JSON.parse(output);
 
-            items.push(new Item(baseURL + json.image.substring(7), contract.address))
+            items.push(new Item(baseURL + json.image.substring(7), tokenId, contract.address))
         }
 
     }
