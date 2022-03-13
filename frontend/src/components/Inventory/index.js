@@ -17,6 +17,7 @@ const Inventory = () => {
     let params = useParams();
     let navigate = useNavigate(); 
 
+    const [isConnected, setisConnected] = useState(undefined);
     const [isRightChain, setisRightChain] = useState(undefined);
     const [items, setItems] =  useState([Item]);
 
@@ -31,6 +32,7 @@ const Inventory = () => {
 
                 if(accounts[0]){
                     
+                    setisConnected(1);
                     let chain = await provider.request({ method: 'eth_chainId' });
                     chain = String(parseInt(chain, 16));
 
@@ -63,26 +65,30 @@ const Inventory = () => {
 
     return (
         <div>
-            {isRightChain ? (
-                <div>
-                    {items.map((item, index) => (
-                        <p key={index}>
-                            {index}
-                            <img src = {item.imageAddress}/>
-                            Contract : {item.contractAddress}
-                            NFT number {item.tokenId}
-                            <Button 
-                                variant="outline-dark" 
-                                onClick={() => {
-                                    navigate("/sellItem/" + item.tokenId + "/" + item.contractAddress);
-                                  }}>
-                                Sell
-                            </Button>
-                        </p>
-                    ))}
-                </div>
+            {isConnected ? (
+                isRightChain ? (
+                    <div>
+                        {items.map((item, index) => (
+                            <p key={index}>
+                                {index}
+                                <img src = {item.imageAddress}/>
+                                Contract : {item.contractAddress}
+                                NFT number {item.tokenId}
+                                <Button 
+                                    variant="outline-dark" 
+                                    onClick={() => {
+                                        navigate("/sellItem/" + item.tokenId + "/" + item.contractAddress);
+                                    }}>
+                                    Sell
+                                </Button>
+                            </p>
+                        ))}
+                    </div>
+                ) : (
+                    <div><center>Please switch to binance smart chain testnet</center></div>
+                )
             ) : (
-                <div>Switch to the Binance Smart Chain</div>
+                <div><center>Please connect to Metamask</center></div>
             )}
         </div>
     );
