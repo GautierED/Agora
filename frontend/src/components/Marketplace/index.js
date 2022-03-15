@@ -16,8 +16,6 @@ const Marketplace = () => {
 
     let navigate = useNavigate(); 
     
-    const [isConnected, setisConnected] = useState(undefined);
-    const [isRightChain, setisRightChain] = useState(undefined);
     const [items, setItems] =  useState([Item]);
 
     useEffect(() => {
@@ -31,13 +29,11 @@ const Marketplace = () => {
 
                 if(accounts[0]){
 
-                    setisConnected(1);
                     let chain = await provider.request({ method: 'eth_chainId' });
                     chain = String(parseInt(chain, 16));
 
                     if(chain === bscChainId){
 
-                        setisRightChain(1);
                         provider = new ethers.providers.Web3Provider(provider);
                         const signer = provider.getSigner();
 
@@ -49,46 +45,33 @@ const Marketplace = () => {
 
                         setItems(await LoadOwnedFromContract(contract, agoraAddress));
 
-                    } else alert('Please switch to the binance smart chain');
-
-                } else alert('Pease login with Metamask');
-
-            } else alert('Please install Metamask');
+                    } 
+                } 
+            } 
             
         };    
         init();
     }, []);    
 
-    window.ethereum.on('accountsChanged', (_account) => window.location.reload());
-    window.ethereum.on('chainChanged', (_chainId) => window.location.reload());
-
     return (
         <div>
-            {isConnected ? (
-                isRightChain ? (
-                    <div>
-                        {items.map((item, index) => (
-                            <p key={index}>
-                                {index}
-                                <img src = {item.imageAddress}/>
-                                Contract : {item.contractAddress}
-                                NFT number {item.tokenId}
-                                <Button 
-                                    variant="outline-dark" 
-                                    onClick={() => {
-                                        navigate("/sellItem/" + item.tokenId + "/" + item.contractAddress);
-                                    }}>
-                                    Sell
-                                </Button>
-                            </p>
-                        ))}
-                    </div>
-                ) : (
-                    <div><center>Please switch to binance smart chain testnet</center></div>
-                )
-            ) : (
-                <div><center>Please connect to Metamask</center></div>
-            )}
+            <div>
+                {items.map((item, index) => (
+                    <p key={index}>
+                        {index}
+                        <img src = {item.imageAddress} alt="NFT"/>
+                        Contract : {item.contractAddress}
+                        NFT number {item.tokenId}
+                        <Button 
+                            variant="outline-dark" 
+                            onClick={() => {
+                                navigate("/buyItem/" + item.contractAddress + "/" + item.tokenId + "/" + item.imageAddress.substring(34));
+                            }}>
+                            Buy
+                        </Button>
+                    </p>
+                ))}
+            </div>
         </div>
     );
 };

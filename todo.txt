@@ -1,4 +1,4 @@
-- afficher une collection -> fait 
+- transmettre le provider/signer de app.js vers les autres composants 
 
 - permettre a un user de lister son nft : 
 	user indique l'adresse du contrat, le numero du nft
@@ -7,4 +7,6 @@
 		-> le nft est présent sur la marketplace
 
 - ajouter une collection (adresse du contrat)
-- ajouter bouton acheter/vendre en dessous des nft 
+- creer nouveau smart contrat de nft
+- creer noyveau smart contrat de marketplace (possibilité de lister les items 
+	+ acheter item)
