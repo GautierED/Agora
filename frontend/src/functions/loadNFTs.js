@@ -1,4 +1,3 @@
-import React from 'react';
 import Item from '../classes/item.js'
 
 //load every nfts from contract owned by a wallet
@@ -10,6 +9,7 @@ export default async function LoadOwnedFromContract(contract, wallet){
     let baseURL = "https://ipfs.moralis.io:2053/ipfs/"
     let supply = await contract.totalSupply();
     supply = parseInt(supply._hex, 16);
+    let endURL = ".JSON";
 
     for(var tokenId = 0; tokenId < supply; tokenId++){
         let ownerAddress = await contract.ownerOf(tokenId);
@@ -17,7 +17,7 @@ export default async function LoadOwnedFromContract(contract, wallet){
 
         if(ownerAddress.toLowerCase() === wallet.toLowerCase()){
 
-            let data = await fetch(baseURL + tokenURI.substring(7));
+            let data = await fetch(baseURL + tokenURI.substring(7) + endURL);
             let output = await data.text();
             let json = JSON.parse(output);
 

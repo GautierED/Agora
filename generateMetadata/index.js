@@ -12,7 +12,6 @@ generateMetadata = async () => {
 
         const img = fs.readFileSync('./images/' + i + '.png');
         let hash = await hashCanvas(img);
-        console.log(hash);
 
         let tempMetadata = {
             image: 'ipfs://' + hash,

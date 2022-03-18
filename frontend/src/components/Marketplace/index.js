@@ -10,7 +10,8 @@ import '../../bootstrap.css';
 
 const nftAddress = '0x2aBf143BF98197f1cE3893F882f3b3222d0cFcc9';
 const agoraAddress = '0xBDb7828472FA1Cb332a1128636a53b2996B11BCC';
-const bscChainId = '97';
+//const bscChainId = '97';
+const mumbaiChainId = '80001';
 
 const Marketplace = () => {
 
@@ -32,7 +33,7 @@ const Marketplace = () => {
                     let chain = await provider.request({ method: 'eth_chainId' });
                     chain = String(parseInt(chain, 16));
 
-                    if(chain === bscChainId){
+                    if(chain === mumbaiChainId){
 
                         provider = new ethers.providers.Web3Provider(provider);
                         const signer = provider.getSigner();

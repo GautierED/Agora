@@ -8,8 +8,10 @@ import Item from '../../classes/item.js'
 import {Button} from 'react-bootstrap';
 import '../../bootstrap.css';
 
-const nftAddress = '0x2aBf143BF98197f1cE3893F882f3b3222d0cFcc9';
-const bscChainId = '97';
+//const nftAddress = '0x2aBf143BF98197f1cE3893F882f3b3222d0cFcc9';
+const nftAddress = '0xd7c3FCE1422004B127D83a16eA444F48A482dA6D';
+//const bscChainId = '97';
+const mumbaiChainId = '80001';
 
 
 const Inventory = () => {
@@ -32,7 +34,7 @@ const Inventory = () => {
                     let chain = await provider.request({ method: 'eth_chainId' });
                     chain = String(parseInt(chain, 16));
 
-                    if(chain === bscChainId){
+                    if(chain === mumbaiChainId){
 
                         provider = new ethers.providers.Web3Provider(provider);
                         const signer = provider.getSigner();

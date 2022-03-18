@@ -12,7 +12,8 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import './bootstrap.css';
 import './App.css';
 
-const bscChainId = '97';
+//const bscChainId = '97';
+const mumbaiChainId = '80001';
 
 const App = () => {
 
@@ -33,7 +34,7 @@ const App = () => {
           let chain = await provider.request({ method: 'eth_chainId' });
           chain = String(parseInt(chain, 16));
 
-          if(chain === bscChainId){
+          if(chain === mumbaiChainId){
             setisRightChain(1);
           }
 
