@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import {ethers, Contract } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
-import LoadOwnedFromContract from '../../functions/loadNFTs.js';
+import LoadNFTs from '../../functions/loadNFTs.js';
 import abiNFT from '../../abiNFT.json';
 import Item from '../../classes/item.js'
 import {Button} from 'react-bootstrap';
 import '../../bootstrap.css';
 
-//const nftAddress = '0x2aBf143BF98197f1cE3893F882f3b3222d0cFcc9';
 const nftAddress = '0xd7c3FCE1422004B127D83a16eA444F48A482dA6D';
-//const bscChainId = '97';
 const mumbaiChainId = '80001';
 
 
@@ -45,7 +43,7 @@ const Inventory = () => {
                             signer
                         );
 
-                        setItems(await LoadOwnedFromContract(contract, accounts[0]));
+                        setItems(await LoadNFTs(contract, accounts[0]));
 
                     }
                 } 

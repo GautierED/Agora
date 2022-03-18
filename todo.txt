@@ -7,6 +7,5 @@
 		-> le nft est présent sur la marketplace
 
 - ajouter une collection (adresse du contrat)
-- creer nouveau smart contrat de nft
-- creer noyveau smart contrat de marketplace (possibilité de lister les items 
-	+ acheter item)
+
+- modifier le contrat : rendre public la variable : nombre d'items en vente

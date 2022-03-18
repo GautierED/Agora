@@ -1,7 +1,7 @@
 import Item from '../classes/item.js'
 
 //load every nfts from contract owned by a wallet
-export default async function LoadOwnedFromContract(contract, wallet){
+export default async function LoadNFTs(contract, wallet){
     const items = [Item];
 
     //cant use infura api anymore for some reason

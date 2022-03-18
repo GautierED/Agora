@@ -12,7 +12,6 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import './bootstrap.css';
 import './App.css';
 
-//const bscChainId = '97';
 const mumbaiChainId = '80001';
 
 const App = () => {

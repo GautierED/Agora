@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import {ethers, Contract } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
-import LoadOwnedFromContract from '../../functions/loadNFTs.js';
+import LoadNFTsContract from '../../functions/loadNFTsContract.js';
 import abiNFT from '../../abiNFT.json';
 import Item from '../../classes/item.js'
 import {Button} from 'react-bootstrap';
@@ -10,7 +10,6 @@ import '../../bootstrap.css';
 
 const nftAddress = '0xd7c3FCE1422004B127D83a16eA444F48A482dA6D';
 const agoraAddress = '0x7d1DB53B7e4f31d7018edcFA7045fD68F58A5175';
-//const bscChainId = '97';
 const mumbaiChainId = '80001';
 
 const Marketplace = () => {
@@ -44,7 +43,7 @@ const Marketplace = () => {
                             signer
                         );
 
-                        setItems(await LoadOwnedFromContract(contract, agoraAddress));
+                        setItems(await LoadNFTsContract(contract, agoraAddress));
 
                     } 
                 } 
