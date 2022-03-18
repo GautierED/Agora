@@ -6,7 +6,7 @@ import About from "./components/About/index";
 import Inventory from "./components/Inventory/index";
 import Marketplace from "./components/Marketplace/index";
 import BuyItem from "./components/BuyItem/index";
-import SellItem from "./components/SellItem/index";
+import ListItem from "./components/ListItem/index";
 import detectEthereumProvider from '@metamask/detect-provider';
 
 import './bootstrap.css';
@@ -73,12 +73,12 @@ return (
               <Route path="/inventory" element={<Inventory />} />
               <Route path="/marketplace" element={<Marketplace />} />
               <Route path="/buyItem/:contractAddress/:idToken/:imageAddress" element={<BuyItem />} />
-              <Route path="/sellItem/:contractAddress/:idToken/:imageAddress" element={<SellItem />} />
+              <Route path="/listItem/:contractAddress/:idToken/:imageAddress" element={<ListItem />} />
             </Routes>
           </Router>
 
         ) : (
-          <div><center>Please switch to binance smart chain testnet</center></div>
+          <div><center>Please switch to the Mumbai Testnet</center></div>
         )  
 
       ) : (

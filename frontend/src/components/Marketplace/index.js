@@ -8,8 +8,8 @@ import Item from '../../classes/item.js'
 import {Button} from 'react-bootstrap';
 import '../../bootstrap.css';
 
-const nftAddress = '0x2aBf143BF98197f1cE3893F882f3b3222d0cFcc9';
-const agoraAddress = '0xBDb7828472FA1Cb332a1128636a53b2996B11BCC';
+const nftAddress = '0xd7c3FCE1422004B127D83a16eA444F48A482dA6D';
+const agoraAddress = '0x7d1DB53B7e4f31d7018edcFA7045fD68F58A5175';
 //const bscChainId = '97';
 const mumbaiChainId = '80001';
 

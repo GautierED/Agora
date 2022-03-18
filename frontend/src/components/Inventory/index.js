@@ -67,9 +67,9 @@ const Inventory = () => {
                         <Button 
                             variant="outline-dark" 
                             onClick={() => {
-                                navigate("/sellItem/" + item.contractAddress + "/" + item.tokenId + "/" + item.imageAddress.substring(34));
+                                navigate("/listItem/" + item.contractAddress + "/" + item.tokenId + "/" + item.imageAddress.substring(34));
                             }}>
-                            Sell
+                            List
                         </Button>
                     </p>
                 ))}

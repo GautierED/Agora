@@ -8,13 +8,18 @@
  const { PRIVATE_KEY } = process.env;
 
 module.exports = {
-  defaultNetwork: "testnet",
+  defaultNetwork: "mumbai",
    networks: {
      localhost: {
        url: "http://127.0.0.1:8545"
      },
      hardhat: {
      },
+     mumbai: {
+      url: "https://rpc-mumbai.maticvigil.com",
+      chainId: 80001,
+      accounts: [`0x${PRIVATE_KEY}`]
+    },
      testnet: {
        url: "https://data-seed-prebsc-1-s1.binance.org:8545",
        chainId: 97,
