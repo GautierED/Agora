@@ -2,7 +2,7 @@ const Home = () => {
 
     return(
         <div>
-            Hello
+            <center>Hello {window.$account} !</center>
         </div>
     );
 

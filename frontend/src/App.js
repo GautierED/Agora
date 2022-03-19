@@ -13,9 +13,11 @@ import './bootstrap.css';
 import './App.css';
 
 const mumbaiChainId = '80001';
+window.$account = 0;
 
 const App = () => {
 
+  global.account = 0;
   const [isConnected, setisConnected] = useState(undefined);
   const [isRightChain, setisRightChain] = useState(undefined);
 
@@ -26,9 +28,10 @@ const App = () => {
 
       if(provider){
 
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        let accounts = await provider.request({ method: 'eth_requestAccounts' });
         if(accounts[0]){
 
+          window.$account = accounts[0];
           setisConnected(1);
           let chain = await provider.request({ method: 'eth_chainId' });
           chain = String(parseInt(chain, 16));

@@ -1,4 +1,15 @@
-- transmettre le provider/signer de app.js vers les autres composants 
+- supprimer verif de connexion mm et chaine
+
+- modifier le contrat : 
+	- rendre public la variable : nombre d'items en vente
+	- ameliorer le mapping
+
+
+- bouton approve qui change de couleur quand tx ok
+
+- creer bdd sqlite
+
+- ajouter une collection (adresse du contrat + abi)
 
 - permettre a un user de lister son nft : 
 	user indique l'adresse du contrat, le numero du nft
@@ -6,6 +17,6 @@
 	ensuite appeler la fonction listItem du contrat marketplace
 		-> le nft est présent sur la marketplace
 
-- ajouter une collection (adresse du contrat)
 
-- modifier le contrat : rendre public la variable : nombre d'items en vente
+
+

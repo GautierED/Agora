@@ -4,6 +4,7 @@ import detectEthereumProvider from '@metamask/detect-provider';
 
 //approve token before a transfer
 export default async function ApproveTransfer(from, to, tokenId){
+    
     let provider = await detectEthereumProvider();
     provider = new ethers.providers.Web3Provider(provider);
     const signer = provider.getSigner();
