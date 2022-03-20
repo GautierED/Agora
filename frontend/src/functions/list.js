@@ -1,12 +1,10 @@
 import abiAgora from '../abiAgora.json';
 import {ethers, Contract } from 'ethers';
-import detectEthereumProvider from '@metamask/detect-provider';
 
 //approve token before a transfer
 export default async function List(nftAddress, agoraAddress, tokenId){
     
-    let provider = await detectEthereumProvider();
-    provider = new ethers.providers.Web3Provider(provider);
+    let provider = new ethers.providers.Web3Provider(window.$provider);
     const signer = provider.getSigner();
 
     const Agora = new Contract(

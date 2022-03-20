@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import {ethers, Contract } from 'ethers';
-import detectEthereumProvider from '@metamask/detect-provider';
 import LoadNFTs from '../../functions/loadNFTs.js';
 import abiNFT from '../../abiNFT.json';
 import Item from '../../classes/item.js'
@@ -9,8 +8,6 @@ import {Button} from 'react-bootstrap';
 import '../../bootstrap.css';
 
 const nftAddress = '0xd7c3FCE1422004B127D83a16eA444F48A482dA6D';
-const mumbaiChainId = '80001';
-
 
 const Inventory = () => {
 
@@ -22,32 +19,17 @@ const Inventory = () => {
         const init = async () => {
 
             setItems([]);
-            let provider = await detectEthereumProvider();
-            if(provider){
+            
+            let provider = new ethers.providers.Web3Provider(window.$provider);
+            const signer = provider.getSigner();
 
-                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const contract = new Contract(
+                nftAddress,
+                abiNFT,
+                signer
+            );
 
-                if(accounts[0]){
-                    
-                    let chain = await provider.request({ method: 'eth_chainId' });
-                    chain = String(parseInt(chain, 16));
-
-                    if(chain === mumbaiChainId){
-
-                        provider = new ethers.providers.Web3Provider(provider);
-                        const signer = provider.getSigner();
-
-                        const contract = new Contract(
-                            nftAddress,
-                            abiNFT,
-                            signer
-                        );
-
-                        setItems(await LoadNFTs(contract, accounts[0]));
-
-                    }
-                } 
-            } 
+            setItems(await LoadNFTs(contract, window.$account));
             
         };    
         init();

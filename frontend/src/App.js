@@ -14,6 +14,7 @@ import './App.css';
 
 const mumbaiChainId = '80001';
 window.$account = 0;
+window.$provider = null;
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
 
       if(provider){
 
+        window.$provider = provider;
         let accounts = await provider.request({ method: 'eth_requestAccounts' });
         if(accounts[0]){
 

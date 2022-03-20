@@ -1,4 +1,4 @@
-- supprimer verif de connexion mm et chaine
+- supprimer premier element mapping item
 
 - modifier le contrat : 
 	- rendre public la variable : nombre d'items en vente
