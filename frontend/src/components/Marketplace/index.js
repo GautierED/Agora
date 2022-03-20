@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import {ethers, Contract } from 'ethers';
 import LoadNFTsContract from '../../functions/loadNFTsContract.js';
 import abiAgora from '../../abiAgora.json';
-import Item from '../../classes/item.js'
 import {Button} from 'react-bootstrap';
 import '../../bootstrap.css';
 
@@ -13,12 +12,11 @@ const Marketplace = () => {
 
     let navigate = useNavigate(); 
     
-    const [items, setItems] =  useState([Item]);
+    const [items, setItems] =  useState([]);
 
     useEffect(() => {
         const init = async () => {
 
-            setItems([]);
             let provider = new ethers.providers.Web3Provider(window.$provider);
             const signer = provider.getSigner();
 
@@ -28,18 +26,17 @@ const Marketplace = () => {
                 signer
             );
 
-            setItems(await LoadNFTsContract(contract));
-            
+            setItems(await LoadNFTsContract(contract, signer));
         };    
         init();
-    }, []);    
+    }, []);  
+    
 
     return (
         <div>
             <div>
                 {items.map((item, index) => (
                     <p key={index}>
-                        {index}
                         <img src = {item.imageAddress} alt="NFT"/>
                         Contract : {item.contractAddress}
                         NFT number {item.tokenId}

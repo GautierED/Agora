@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import {ethers, Contract } from 'ethers';
 import LoadNFTs from '../../functions/loadNFTs.js';
-import abiNFT from '../../abiNFT.json';
-import Item from '../../classes/item.js'
+import abiDoodles from '../../abiDoodles.json';
 import {Button} from 'react-bootstrap';
 import '../../bootstrap.css';
 
@@ -13,24 +12,21 @@ const Inventory = () => {
 
     let navigate = useNavigate(); 
 
-    const [items, setItems] =  useState([Item]);
+    const [items, setItems] =  useState([]);
 
     useEffect(() => {
         const init = async () => {
 
-            setItems([]);
-            
             let provider = new ethers.providers.Web3Provider(window.$provider);
             const signer = provider.getSigner();
 
             const contract = new Contract(
                 nftAddress,
-                abiNFT,
+                abiDoodles,
                 signer
             );
 
             setItems(await LoadNFTs(contract, window.$account));
-            
         };    
         init();
     }, []);    
@@ -40,7 +36,6 @@ const Inventory = () => {
             <div>
                 {items.map((item, index) => (
                     <p key={index}>
-                        {index}
                         <img src = {item.imageAddress} alt="NFT"/>
                         Contract : {item.contractAddress}
                         NFT number {item.tokenId}
