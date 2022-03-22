@@ -40,10 +40,11 @@ const Marketplace = () => {
                         <img src = {item.imageAddress} alt="NFT"/>
                         Contract : {item.contractAddress}
                         NFT number {item.tokenId}
+                        Price {item.price}
                         <Button 
                             variant="outline-dark" 
                             onClick={() => {
-                                navigate("/buyItem/" + item.contractAddress + "/" + item.tokenId + "/" + item.imageAddress.substring(34));
+                                navigate("/buyItem/" + item.contractAddress + "/" + item.tokenId + "/" + item.itemId + "/"   + item.price + "/" + item.imageAddress.substring(34));
                             }}>
                             Buy
                         </Button>

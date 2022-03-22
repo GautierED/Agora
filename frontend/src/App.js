@@ -76,7 +76,7 @@ return (
               <Route path="/about" element={<About />} />
               <Route path="/inventory" element={<Inventory />} />
               <Route path="/marketplace" element={<Marketplace />} />
-              <Route path="/buyItem/:contractAddress/:idToken/:imageAddress" element={<BuyItem />} />
+              <Route path="/buyItem/:contractAddress/:tokenId/:itemId/:price/:imageAddress" element={<BuyItem />} />
               <Route path="/listItem/:contractAddress/:idToken/:imageAddress" element={<ListItem />} />
             </Routes>
           </Router>
