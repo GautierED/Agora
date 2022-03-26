@@ -15,7 +15,6 @@ const BuyItem = () => {
             <img src = {src} alt="NFT"/>
             Contract {contractAddress}<br></br>
             Token number {tokenId}
-            map {itemId}
             Price {price}
 
             <Button 

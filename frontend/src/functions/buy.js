@@ -2,7 +2,7 @@ import abiAgora from '../abiAgora.json';
 import {ethers, Contract } from 'ethers';
 
 //approve token before a transfer
-export default async function Buy(nftAddress, agoraAddress, itemId, price){
+export default async function Buy(contractAddress, agoraAddress, tokenId, price){
     
     let provider = new ethers.providers.Web3Provider(window.$provider);
     const signer = provider.getSigner();
@@ -13,6 +13,6 @@ export default async function Buy(nftAddress, agoraAddress, itemId, price){
         signer
     );
 
-    let tx = await Agora.buyItem(nftAddress, itemId, { value: ethers.utils.parseEther('0.01') });
+    let tx = await Agora.buyItem(contractAddress, tokenId, { value: ethers.utils.parseEther('0.01') });
     await tx.wait();
 };
