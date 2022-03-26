@@ -58,7 +58,7 @@ return (
         isRightChain ? (
 
           <Router>
-              <Navbar bg="light" expand="lg">
+              <Navbar bg="dark" variant="dark">
                 <Container>
                   <Navbar.Brand href="/">Agora</Navbar.Brand>
                   <Navbar.Toggle aria-controls="basic-navbar-nav" />

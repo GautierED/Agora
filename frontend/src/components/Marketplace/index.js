@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Card } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import {ethers, Contract } from 'ethers';
 import LoadNFTsContract from '../../functions/loadNFTsContract.js';
@@ -33,22 +34,23 @@ const Marketplace = () => {
     
 
     return (
-        <div>
-            <div>
+        <div className="container">
+            <div className="row">
                 {items.map((item, index) => (
-                    <p key={index}>
-                        <img src = {item.imageAddress} alt="NFT"/>
-                        Contract : {item.contractAddress}
-                        NFT number {item.tokenId}
-                        Price {item.price}
-                        <Button 
-                            variant="outline-dark" 
-                            onClick={() => {
-                                navigate("/buyItem/" + item.contractAddress + "/" + item.tokenId + "/" + item.itemId + "/"   + item.price + "/" + item.imageAddress.substring(34));
-                            }}>
-                            Buy
-                        </Button>
-                    </p>
+                    <Card className="col-xs-1" style={{ width: '18rem' }} key={index}>
+                        <Card.Img variant="top" src={item.imageAddress} />
+                        <Card.Body>
+                            <Card.Title>{item.contractAddress}</Card.Title>
+                            <Card.Text>NFT n°{item.tokenId}</Card.Text>
+                            <Button 
+                                variant="outline-dark" 
+                                onClick={() => {
+                                    navigate("/buyItem/" + item.contractAddress + "/" + item.tokenId + "/" + item.itemId + "/"   + item.price + "/" + item.imageAddress.substring(34));
+                                }}>
+                                List
+                            </Button>
+                        </Card.Body>
+                    </Card>  
                 ))}
             </div>
         </div>
