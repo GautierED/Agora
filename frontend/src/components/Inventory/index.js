@@ -37,17 +37,19 @@ const Inventory = () => {
             <div className="row">
                 {items.map((item, index) => (
                     <Card className="col-xs-1" style={{ width: '18rem' }} key={index}>
-                        <Card.Img variant="top" src={item.imageAddress} />
+                        <Card.Img variant="top" src={item.cid} />
                         <Card.Body>
                             <Card.Title>{item.contractAddress}</Card.Title>
-                            <Card.Text>NFT n°{item.tokenId}</Card.Text>
-                            <Button 
-                                variant="outline-dark" 
-                                onClick={() => {
-                                    navigate("/listItem/" + item.contractAddress + "/" + item.tokenId + "/" + item.imageAddress.substring(34));
-                                }}>
-                                List
-                            </Button>
+                            <Card.Text style={{textAlign: "center"}}>NFT n°{item.tokenId}</Card.Text>
+                            <div class="row justify-content-center">
+                                <Button 
+                                    variant="outline-dark" 
+                                    onClick={() => {
+                                        navigate("/listItem/" + item.contractAddress + "/" + item.tokenId + "/" + item.cid.substring(34));
+                                    }}>
+                                    List
+                                </Button>
+                            </div>
                         </Card.Body>
                     </Card>  
                 ))}

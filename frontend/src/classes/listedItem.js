@@ -1,6 +1,6 @@
 export default class ListedItem {
-    constructor(imageAddress, tokenId, itemId, contractAddress, seller, price) {
-        this.imageAddress = imageAddress;
+    constructor(cid, tokenId, itemId, contractAddress, seller, price) {
+        this.cid = cid;
         this.tokenId = tokenId;
         this.itemId = itemId;
         this.contractAddress = contractAddress;

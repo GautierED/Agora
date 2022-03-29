@@ -1,19 +1,16 @@
-- modifier le contrat : 
-	- rendre public la variable : nombre d'items en vente
-	- ameliorer le mapping
+- modifiy contract : show total number of nfts
+- remove item from map when it has been sold
+- add events (for example : item has been listed / bought)
 
+- alert (toast ?) the user when nft has been approved
 
-- bouton approve qui change de couleur quand tx ok
+- alert (toast ?) the user when item has been bought / sold
 
-- creer bdd sqlite
+- create database
 
-- ajouter une collection (adresse du contrat + abi)
+- add collection to database
 
-- permettre a un user de lister son nft : 
-	user indique l'adresse du contrat, le numero du nft
-	si il existe, demander au user d'approuver via le contrat nft
-	ensuite appeler la fonction listItem du contrat marketplace
-		-> le nft est présent sur la marketplace
+- mint nft from image 
 
 
 
