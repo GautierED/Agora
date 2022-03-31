@@ -12,12 +12,13 @@ export default async function LoadNFTsContract(contract){
 
     for(let i = 0; i < nbNFTs; i++){
 
-        let itm = await contract.getItemById(13);
+        let itm = await contract.getItemById(16);
         let tokenId = parseInt(itm.tokenId._hex, 16);
         let con = await GetContract(itm.nftContract);
         let tokenURI = await con.tokenURI(tokenId);
         let itemId = parseInt(itm.itemId._hex, 16);
         let price = parseInt(itm.price._hex, 16);
+        price = price * Math.pow(10, -18);
         let data = await fetch(baseURL + tokenURI.substring(7) + endURL);
         let output = await data.text();
         let json = JSON.parse(output);

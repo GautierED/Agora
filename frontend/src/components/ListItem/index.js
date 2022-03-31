@@ -26,9 +26,9 @@ const ListItem = () => {
             </div> 
 
             <div className="row justify-content-center">
+                Set ETH price
                 <FormControl
                     style={{textAlign: "center"}}
-                    placeholder="Set ETH price"
                     aria-label="price"
                     aria-describedby="basic-addon2"
                     value={price}

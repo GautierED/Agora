@@ -13,6 +13,6 @@ export default async function List(contractAddress, agoraAddress, tokenId, price
         signer
     );
 
-    let tx = await Agora.listItem(contractAddress, tokenId, ethers.utils.parseEther(toString(price)), { value: ethers.utils.parseEther('0.01') });
+    let tx = await Agora.listItem(contractAddress, tokenId, ethers.utils.parseEther(price.toString()), { value: ethers.utils.parseEther('0.01') });
     await tx.wait();
 };
