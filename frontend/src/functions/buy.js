@@ -13,6 +13,6 @@ export default async function Buy(contractAddress, agoraAddress, tokenId, price)
         signer
     );
 
-    let tx = await Agora.buyItem(contractAddress, tokenId, { value: ethers.utils.parseEther('0.01') });
+    let tx = await Agora.buyItem(contractAddress, tokenId, { value: ethers.utils.parseEther(price) });
     await tx.wait();
 };

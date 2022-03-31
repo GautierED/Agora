@@ -17,7 +17,7 @@ const BuyItem = () => {
                     <Card.Img variant="top" src={imgSrc} />
                     <Card.Body>
                         <Card.Title>{contractAddress}</Card.Title>
-                        <Card.Text style={{textAlign: "center"}}>NFT n°{tokenId} <br></br>Price {price}</Card.Text>
+                        <Card.Text style={{textAlign: "center"}}>NFT n°{tokenId} <br></br>Price {price} ETH</Card.Text>
                     </Card.Body>
                 </Card> 
             </div> 

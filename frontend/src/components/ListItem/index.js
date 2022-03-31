@@ -26,14 +26,19 @@ const ListItem = () => {
             </div> 
 
             <div className="row justify-content-center">
-                Set ETH price
+                <div class="align-self-center">
+                    Set ETH price :
+                </div>
+                <div style={{width:"10%"}}>
                 <FormControl
+                    className="w-24"
                     style={{textAlign: "center"}}
                     aria-label="price"
                     aria-describedby="basic-addon2"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                 />
+                </div>
             </div>
 
             <div className="row justify-content-center">
