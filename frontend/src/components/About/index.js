@@ -1,8 +1,4 @@
-import loadContractsDb from '../../functions/loadContractsDb';
-
 const About = () => {
-
-    loadContractsDb();
 
     return(
         <div>
