@@ -12,7 +12,7 @@ const BuyItem = () => {
 
     return(
         <div>
-            <div class="row justify-content-center">
+            <div className="row justify-content-center">
                 <Card className="col-xs-1" style={{ width: '18rem' }}>
                     <Card.Img variant="top" src={imgSrc} />
                     <Card.Body>
@@ -22,7 +22,7 @@ const BuyItem = () => {
                 </Card> 
             </div> 
 
-            <div class="row justify-content-center">
+            <div className="row justify-content-center">
                 <Button 
                     variant="outline-dark" 
                     onClick={() => {

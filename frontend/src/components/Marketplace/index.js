@@ -41,8 +41,8 @@ const Marketplace = () => {
                         <Card.Img variant="top" src={item.cid} />
                         <Card.Body>
                             <Card.Title>{item.contractAddress}</Card.Title>
-                            <Card.Text style={{textAlign: "center"}}>NFT n°{item.tokenId}</Card.Text>
-                            <div class="row justify-content-center">
+                            <Card.Text style={{textAlign: "center"}}>NFT n°{item.tokenId} <br></br>Price {item.price}</Card.Text>
+                            <div className="row justify-content-center">
                                 <Button 
                                     variant="outline-dark" 
                                     onClick={() => {
