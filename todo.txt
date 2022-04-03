@@ -1,12 +1,6 @@
-- modifiy contract : show total number of nfts
-- remove item from map when it has been sold
-- add events (for example : item has been listed / bought)
-
 - alert (toast ?) the user when nft has been approved
 
 - alert (toast ?) the user when item has been bought / sold
-
-- create database
 
 - add collection to database
 
