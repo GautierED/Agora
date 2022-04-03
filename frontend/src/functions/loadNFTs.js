@@ -4,8 +4,6 @@ import Item from '../classes/item.js'
 export default async function LoadNFTs(contract, wallet){
     let items = [];
 
-    //cant use infura api anymore for some reason
-    //let baseURL = "https://ipfs.infura.io:5001/api/v0/cat?arg=";
     let baseURL = "https://ipfs.moralis.io:2053/ipfs/";
     let endURL = ".JSON";
     let supply = await contract.totalSupply();
