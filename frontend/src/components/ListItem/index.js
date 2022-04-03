@@ -4,6 +4,7 @@ import {Button} from 'react-bootstrap';
 import { useState } from "react";
 import ApproveTransfer from '../../functions/approve.js';
 import List from '../../functions/list.js';
+import GetContractNameByAddress from '../../functions/getContractNameByAddress.js';
 const agoraAddress = '0x0160569F5498Ea4252664068C3359ea83564c9Dc';
 
 const ListItem = () => {
@@ -19,8 +20,8 @@ const ListItem = () => {
                 <Card className="col-xs-1" style={{ width: '18rem' }}>
                     <Card.Img variant="top" src={imgSrc} />
                     <Card.Body>
-                        <Card.Title>{contractAddress}</Card.Title>
-                        <Card.Text style={{textAlign: "center"}}>NFT n°{tokenId}</Card.Text>
+                        <Card.Title style={{textAlign: "center"}}>{GetContractNameByAddress(contractAddress)}</Card.Title>
+                        <Card.Text style={{textAlign: "center"}}>n°{tokenId}</Card.Text>
                     </Card.Body>
                 </Card> 
             </div> 

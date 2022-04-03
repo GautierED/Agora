@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import {ethers, Contract } from 'ethers';
 import LoadNFTs from '../../functions/loadNFTs.js';
+import GetContractNameByAddress from '../../functions/getContractNameByAddress.js';
 import abiDoodles from '../../abiDoodles.json';
 import {Button} from 'react-bootstrap';
 import '../../bootstrap.css';
@@ -39,8 +40,8 @@ const Inventory = () => {
                     <Card className="col-xs-1" style={{ width: '18rem' }} key={index}>
                         <Card.Img variant="top" src={item.cid} />
                         <Card.Body>
-                            <Card.Title>{item.contractAddress}</Card.Title>
-                            <Card.Text style={{textAlign: "center"}}>NFT n°{item.tokenId}</Card.Text>
+                            <Card.Title style={{textAlign: "center"}}>{GetContractNameByAddress(item.contractAddress)}</Card.Title>
+                            <Card.Text style={{textAlign: "center"}}>n°{item.tokenId}</Card.Text>
                             <div className="row justify-content-center">
                                 <Button 
                                     variant="outline-dark" 
