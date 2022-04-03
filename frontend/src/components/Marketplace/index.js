@@ -3,11 +3,11 @@ import { Card } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import {ethers, Contract } from 'ethers';
 import LoadNFTsContract from '../../functions/loadNFTsContract.js';
-import abiAgora from '../../abiAgora.json';
+import abiAgora from '../../abiAgoraV2.json';
 import {Button} from 'react-bootstrap';
 import '../../bootstrap.css';
 
-const agoraAddress = '0x7d1DB53B7e4f31d7018edcFA7045fD68F58A5175';
+const agoraAddress = '0x0160569F5498Ea4252664068C3359ea83564c9Dc';
 
 const Marketplace = () => {
 

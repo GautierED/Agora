@@ -1,20 +1,21 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity >=0.8.0;
 
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
 contract Agora is IERC721Receiver {
-    using Counters for Counters.Counter;
-    Counters.Counter private _itemIds;
-    Counters.Counter private _itemsSold;
 
+    uint public count; 
     address payable owner;
     uint256 listingPrice = 0.01 ether;
 
+    event itemListed(address nftContract, uint256 tokenId, uint256 price);
+    event itemBought(address nftContract, uint256 tokenId, uint256 price, address buyer);
+
     constructor() {
+        count = 0;
         owner = payable(msg.sender);
     }
 
@@ -24,18 +25,17 @@ contract Agora is IERC721Receiver {
         uint256, 
         bytes calldata
     )external override returns(bytes4) {
-            return bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
+        return bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
     } 
 
     struct Item {
-        uint itemId;
         address nftContract;
         uint256 tokenId;
         address payable seller;
         uint256 price;
     }
 
-    mapping(uint256 => Item) private idItem;
+    mapping(uint256 => Item) private items;
 
     function listItem(
         address nftContract,
@@ -44,38 +44,45 @@ contract Agora is IERC721Receiver {
     ) public payable {
         require(price > 0, "Price must be at least 1 wei");
         require(msg.value == listingPrice, "Price must be equal to listing price");
-
-        _itemIds.increment();
-        uint256 itemId = _itemIds.current();
     
-        idItem[itemId] =  Item(
-            itemId,
+        items[count] =  Item(
             nftContract,
             tokenId,
             payable(msg.sender),
             price
         );
 
+        count++;
+
         payable(msg.sender).transfer(listingPrice);
         IERC721(nftContract).safeTransferFrom(msg.sender, address(this), tokenId);
+
+        emit itemListed(nftContract, tokenId, price);
+
     }
 
     function buyItem(
-        address nftContract,
-        uint256 itemId
+        uint256 id
     ) public payable {
-        uint price = idItem[itemId].price;
-        uint tokenId = idItem[itemId].tokenId;
+        address nftContract = items[id].nftContract;
+        uint price = items[id].price;
+        uint tokenId = items[id].tokenId;
         require(msg.value == price, "Please submit the asking price in order to complete the purchase");
-
-        idItem[itemId].seller.transfer(msg.value);
+        items[id].seller.transfer(msg.value);
         IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
-        _itemsSold.increment();
-        delete idItem[itemId];
+        remove(id);
+        emit itemBought(nftContract, tokenId, price, msg.sender);
     }
 
-    function getItemById(uint256 Id) public view returns (Item memory) {
-        Item memory itm = idItem[Id];
+     function remove(uint index) public {
+        if (index >= count) return;
+        items[index] = items[count-1];
+        delete items[count-1];
+        count--;
+    }
+
+    function getItemById(uint256 id) public view returns (Item memory) {
+        Item memory itm = items[id];
         return itm;
     }
 

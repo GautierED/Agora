@@ -1,4 +1,4 @@
-import abiAgora from '../abiAgora.json';
+import abiAgora from '../abiAgoraV2.json';
 import {ethers, Contract } from 'ethers';
 
 //approve token before a transfer
@@ -13,6 +13,6 @@ export default async function Buy(contractAddress, agoraAddress, tokenId, price)
         signer
     );
 
-    let tx = await Agora.buyItem(contractAddress, tokenId, { value: ethers.utils.parseEther(price) });
+    let tx = await Agora.buyItem(tokenId, { value: ethers.utils.parseEther(price) });
     await tx.wait();
 };

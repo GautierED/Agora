@@ -4,7 +4,7 @@ import {Button} from 'react-bootstrap';
 import { useState } from "react";
 import ApproveTransfer from '../../functions/approve.js';
 import List from '../../functions/list.js';
-const agoraAddress = '0x7d1DB53B7e4f31d7018edcFA7045fD68F58A5175';
+const agoraAddress = '0x0160569F5498Ea4252664068C3359ea83564c9Dc';
 
 const ListItem = () => {
 
@@ -26,7 +26,7 @@ const ListItem = () => {
             </div> 
 
             <div className="row justify-content-center">
-                <div class="align-self-center">
+                <div className="align-self-center">
                     Set ETH price :
                 </div>
                 <div style={{width:"10%"}}>
