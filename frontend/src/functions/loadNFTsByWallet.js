@@ -1,7 +1,7 @@
 import Item from '../classes/item.js'
 
 //load every nfts from contract owned by a wallet
-export default async function LoadNFTs(contract, wallet){
+export default async function LoadNFTsByWallet(contract, wallet){
     let items = [];
 
     let baseURL = "https://ipfs.moralis.io:2053/ipfs/";

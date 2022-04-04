@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import {ethers, Contract } from 'ethers';
-import LoadNFTs from '../../functions/loadNFTs.js';
+import LoadNFTsByWallet from '../../functions/loadNFTsByWallet.js';
 import GetContractNameByAddress from '../../functions/getContractNameByAddress.js';
 import abiDoodles from '../../abiDoodles.json';
 import {Button} from 'react-bootstrap';
@@ -28,7 +28,7 @@ const Inventory = () => {
                 signer
             );
 
-            setItems(await LoadNFTs(contract, window.$account));
+            setItems(await LoadNFTsByWallet(contract, window.$account));
         };    
         init();
     }, []);    
