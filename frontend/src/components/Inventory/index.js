@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
-import {ethers, Contract } from 'ethers';
+import { ethers } from 'ethers';
 import LoadNFTsByWallet from '../../functions/loadNFTsByWallet.js';
-import GetContractNameByAddress from '../../functions/getContractNameByAddress.js';
-import abiDoodles from '../../abiDoodles.json';
 import {Button} from 'react-bootstrap';
 import '../../bootstrap.css';
-
-const nftAddress = '0xd7c3FCE1422004B127D83a16eA444F48A482dA6D';
 
 const Inventory = () => {
 
@@ -22,13 +18,7 @@ const Inventory = () => {
             let provider = new ethers.providers.Web3Provider(window.$provider);
             const signer = provider.getSigner();
 
-            const contract = new Contract(
-                nftAddress,
-                abiDoodles,
-                signer
-            );
-
-            setItems(await LoadNFTsByWallet(contract, window.$account));
+            setItems(await LoadNFTsByWallet(window.$account,signer));
         };    
         init();
     }, []);    
@@ -40,8 +30,8 @@ const Inventory = () => {
                     <Card className="col-xs-1" style={{ width: '18rem' }} key={index}>
                         <Card.Img variant="top" src={item.cid} />
                         <Card.Body>
-                            <Card.Title style={{textAlign: "center"}}>{GetContractNameByAddress(item.contractAddress)}</Card.Title>
-                            <Card.Text style={{textAlign: "center"}}>n°{item.tokenId}</Card.Text>
+                            <Card.Title>{item.contractAddress}</Card.Title>
+                            <Card.Text style={{textAlign: "center"}}>NFT n°{item.tokenId}</Card.Text>
                             <div className="row justify-content-center">
                                 <Button 
                                     variant="outline-dark" 

@@ -3,8 +3,10 @@ import { Card } from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import Buy from '../../functions/buy.js';
 import GetContractNameByAddress from '../../functions/getContractNameByAddress.js';
+import GetFirstContract from '../../functions/getFirstContract.js';
+
 const agoraAddress = '0x0160569F5498Ea4252664068C3359ea83564c9Dc';
-const nftAddress = '0xd7c3FCE1422004B127D83a16eA444F48A482dA6D';
+const nftAddress = GetFirstContract();
 
 const BuyItem = () => {
 
