@@ -20,7 +20,13 @@ export default async function LoadNFTsContract(contract){
         let price = parseInt(itm.price._hex, 16);
         price = price * Math.pow(10, -18);
 
-        let data = await fetch(baseURL + tokenURI.substring(7) + endURL);
+        let data;
+        if(con.address === '0xd7c3FCE1422004B127D83a16eA444F48A482dA6D'){
+            data = await fetch(baseURL + tokenURI.substring(7) + endURL);
+        } else {
+            data = await fetch(baseURL + tokenURI.substring(7));
+        }
+
         let output = await data.text();
         let json = JSON.parse(output);
 

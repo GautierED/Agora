@@ -2,7 +2,7 @@
 
 - alert (toast ?) the user when item has been bought / sold
 
-- add collection to database
+- add collection to database from input (address/name/abi)
 
 - mint nft from image 
 

@@ -11,6 +11,7 @@ export default async function LoadNFTsByWallet(wallet,signer){
     const unresolved = contracts.map(async(data) => {
         let address = data.address;
         let abi = data.abi;
+        let name = data.name;
     
         const contract = new Contract(
             address,
@@ -27,7 +28,13 @@ export default async function LoadNFTsByWallet(wallet,signer){
     
             if(ownerAddress.toLowerCase() === wallet.toLowerCase()){
     
-                let data = await fetch(baseURL + tokenURI.substring(7) + endURL);
+                let data;
+                if(name === 'Doodles'){
+                    data = await fetch(baseURL + tokenURI.substring(7) + endURL);
+                } else {
+                    data = await fetch(baseURL + tokenURI.substring(7));
+                }
+                
                 let output = await data.text();
                 let json = JSON.parse(output);
     

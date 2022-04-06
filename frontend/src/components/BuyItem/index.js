@@ -3,10 +3,8 @@ import { Card } from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import Buy from '../../functions/buy.js';
 import GetContractNameByAddress from '../../functions/getContractNameByAddress.js';
-import GetFirstContract from '../../functions/getFirstContract.js';
 
 const agoraAddress = '0x0160569F5498Ea4252664068C3359ea83564c9Dc';
-const nftAddress = GetFirstContract();
 
 const BuyItem = () => {
 
@@ -29,7 +27,7 @@ const BuyItem = () => {
                 <Button 
                     variant="outline-dark" 
                     onClick={() => {
-                        Buy(nftAddress, agoraAddress, itemId, price);
+                        Buy(contractAddress, agoraAddress, itemId, price);
                     }}>
                     Buy
                 </Button>
