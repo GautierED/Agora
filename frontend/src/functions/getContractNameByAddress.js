@@ -5,7 +5,7 @@ export default function GetContractNameByAddress(contractAddress){
     let name = '';
 
     {contracts.map((data) => {
-        if(data.address == contractAddress){
+        if(data.address === contractAddress){
             name = data.name;
         }
     })}

@@ -44,7 +44,7 @@ export default async function LoadNFTsByWallet(wallet,signer){
     
     })
 
-    const resolved = await Promise.all(unresolved);
+    await Promise.all(unresolved);
     return items;
 
 };
